@@ -1,14 +1,20 @@
 tablesort
 =========
+
+## 1 шаг
+Добавляем css на страницу: https://raw.github.com/artembeloglazov/tablesort/master/style.css
+
+## 2 шаг
+
 ```javascript
-$('head').append('<link rel="stylesheet" href="https://raw.github.com/artembeloglazov/tablesort/master/style.css" type="text/css" />');
 $('#issue_tree table.list.issues').attr('id', 'subTaskTable').addClass('tablesorter');
-$('#subTaskTable').append('<thead><th>name</th><th>status</th><th>author</th><th>progress</th></thead>');
+$('#subTaskTable tbody').first().before('<thead><th style="display:none">111</th><th>name</th><th>status</th><th>author</th><th>progress</th></thead>');
 $.getScript("http://redmine.rg1.ru/custom_js/jquery.tablesorter.min.js", function(){
   $('#subTaskTable').tablesorter();
 });
 ```
-очистить заголовки:
+
+## очистить заголовки:
 
 ```javascript
 $('#subTaskTable').remove()
