@@ -59,7 +59,7 @@ $( document ).ready(function() {
    $('#issue_tree p strong:contains("Подзадачи")').append(' (кол-во: ' + $('.issue.hascontextmenu').length + ', из них закрытые: ' + $('.issue.hascontextmenu > td:contains("Закрыта")').length + ')');
    $('#issue_tree table.list.issues').attr('id', 'subTaskTable').addClass('tablesorter');
    $('#subTaskTable tbody').first().before('<thead><th style="display:none">111</th><th>name</th><th>status</th><th>author</th><th>progress</th></thead>');
-   $.getScript("https://raw.github.com/artembeloglazov/redmine-subtask-tablesorter/master/jquery.tablesorter.min.js", function(){
+   $.getScript("http://rawgithub.com/artembeloglazov/redmine-subtask-tablesorter/master/jquery.tablesorter.min.js", function(){
      $('#subTaskTable').tablesorter();
    });
 
