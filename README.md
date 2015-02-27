@@ -54,13 +54,22 @@ table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSo
 Добавляем javascript:
 
 ```javascript
+// redmine-subtask-tablesorter https://github.com/artembeloglazov/redmine-subtask-tablesorter
 $( document ).ready(function() {
 
-   $('#issue_tree p strong:contains("Подзадачи")').append(' (кол-во: ' + $('.issue.hascontextmenu').length + ', из них закрытые: ' + $('.issue.hascontextmenu > td:contains("Закрыта")').length + ')');
+   $('#issue_tree p strong:contains("Подзадачи")').append(' (кол-во: ' + $('#issue_tree .issue.hascontextmenu').length + ', из них закрытые: ' + $('#issue_tree .issue.hascontextmenu > td:contains("Закрыта")').length + ')');
    $('#issue_tree table.list.issues').attr('id', 'subTaskTable').addClass('tablesorter');
+   $('#content table:has(th):not(.attributes)').prepend('<thead></thead>');
+   $('#content table:has(th):not(.attributes)').each(function(){
+        $(this).find('thead').wrapInner($(this).find('tbody tr:first-child'));
+   });
    $('#subTaskTable tbody').first().before('<thead><th style="display:none">111</th><th>name</th><th>status</th><th>author</th><th>progress</th></thead>');
    $.getScript("http://rawgithub.com/artembeloglazov/redmine-subtask-tablesorter/master/jquery.tablesorter.min.js", function(){
      $('#subTaskTable').tablesorter();
+     $('#content table:has(th):not(.attributes)').each(function(){
+          $(this).tablesorter();
+     });
+     $('th.header').css( 'cursor', 'pointer' );
    });
 
 });
